@@ -154,9 +154,14 @@ export default function EdgeAI() {
             Votre modèle tourne offline en 48h
           </h2>
           <p className="text-gray-400 text-lg mb-10">Envoyez-nous votre architecture hardware. On s'occupe du reste.</p>
-          <a href="mailto:hello@wikolabs.com?subject=EdgeAI — Demande de démo" className="inline-block bg-green-400 text-gray-900 hover:bg-green-300 px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ fontFamily: "var(--font-display)" }}>
-            Déployer sur mon hardware →
-          </a>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="inline-block bg-green-400 text-gray-900 hover:bg-green-300 px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ fontFamily: "var(--font-display)" }}>
+              📅 Réserver un créneau →
+            </a>
+            <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20EdgeAI%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ background: "#25d366", borderColor: "#25d366", color: "#fff", fontFamily: "var(--font-display)" }}>
+              💬 WhatsApp →
+            </a>
+          </div>
           <p className="text-gray-600 text-sm mt-5" style={{ fontFamily: "var(--font-display)" }}>POC en 48h. Compatible Raspberry Pi, Jetson, STM32, ESP32.</p>
         </div>
       </section>
