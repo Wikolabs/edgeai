@@ -1,4 +1,4 @@
-export default function EdgeAI() {
+﻿export default function EdgeAI() {
   return (
     <div className="min-h-screen" style={{ fontFamily: "var(--font-body)" }}>
 
@@ -172,7 +172,7 @@ export default function EdgeAI() {
           <span className="font-bold text-green-400 text-xl tracking-widest" style={{ fontFamily: "var(--font-display)" }}>EdgeAI</span>
           <p className="text-sm">© 2025 EdgeAI — Un produit <a href="https://wikolabs.com" className="text-gray-400 hover:text-green-400 transition-colors">Wikolabs</a></p>
           <div className="flex gap-6 text-sm" style={{ fontFamily: "var(--font-display)" }}>
-            <a href="mailto:hello@wikolabs.com" className="hover:text-green-400 transition-colors">Contact</a>
+            <a href="mailto:team@wikolabs.com" className="hover:text-green-400 transition-colors">Contact</a>
             <a href="https://wikolabs.com" className="hover:text-green-400 transition-colors">Wikolabs</a>
           </div>
         </div>
