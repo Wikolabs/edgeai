@@ -5,35 +5,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
-
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Log in to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t ghcr.io/wikolabs/edgeai:latest .
-          docker push ghcr.io/wikolabs/edgeai:latest
-
       - name: Deploy to VM via SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.WIKOLABS_VM_SSH_KEY }}
           VM_HOST: ${{ secrets.WIKOLABS_VM_HOST }}
           VM_USER: ${{ secrets.WIKOLABS_VM_USER }}
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GHCR_USER: ${{ github.actor }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$VM_USER@$VM_HOST"             "echo '$GHCR_TOKEN' | docker login ghcr.io -u '$GHCR_USER' --password-stdin             && docker pull ghcr.io/wikolabs/edgeai:latest             && (docker stop edgeai 2>/dev/null; docker rm edgeai 2>/dev/null; true)             && docker run -d --name edgeai -p 3028:3000 --restart unless-stopped ghcr.io/wikolabs/edgeai:latest             && echo 'Deployed edgeai on port 3028'"
+          ssh -i ~/.ssh/deploy_key             -o StrictHostKeyChecking=no             -o UserKnownHostsFile=/dev/null             -o ServerAliveInterval=30             -o ServerAliveCountMax=30             "$VM_USER@$VM_HOST"             "set -e; if [ -d /opt/edgeai/.git ]; then cd /opt/edgeai && git fetch origin main && git reset --hard origin/main; else git clone https://github.com/Wikolabs/edgeai.git /opt/edgeai && cd /opt/edgeai; fi && docker build -t edgeai:local . && (docker stop edgeai 2>/dev/null; docker rm edgeai 2>/dev/null; true) && docker run -d --name edgeai -p 3028:3000 --restart unless-stopped edgeai:local && echo 'Deployed edgeai on port 3028'"
