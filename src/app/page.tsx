@@ -155,9 +155,9 @@
           </h2>
           <p className="text-gray-400 text-lg mb-10">Envoyez-nous votre architecture hardware. On s'occupe du reste.</p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="inline-block bg-green-400 text-gray-900 hover:bg-green-300 px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ fontFamily: "var(--font-display)" }}>
+            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="inline-block bg-green-400 text-gray-900 hover:bg-green-300 px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ fontFamily: "var(--font-display)" }}>
               📅 Réserver un créneau →
-            </a>
+            </button>
             <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20EdgeAI%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-5 rounded font-bold text-xl transition-colors shadow-xl" style={{ background: "#25d366", borderColor: "#25d366", color: "#fff", fontFamily: "var(--font-display)" }}>
               💬 WhatsApp →
             </a>
