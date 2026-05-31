@@ -1,0 +1,36 @@
+version: "3.9"
+
+# EdgeAI demo — production-ready POC.
+# 2 services orchestrated:
+#   - edgeai (Next.js frontend on host port 3028)
+#   - edgeai-backend (FastAPI Python, internal only on 8000)
+# Internal network so the frontend can reach the backend by service name.
+
+services:
+  edgeai-backend:
+    image: ghcr.io/wikolabs/edgeai-backend:latest
+    container_name: edgeai-backend
+    restart: unless-stopped
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    networks:
+      - edgeai-net
+
+  edgeai:
+    image: ghcr.io/wikolabs/edgeai:latest
+    container_name: edgeai
+    restart: unless-stopped
+    ports:
+      - "3028:3000"
+    environment:
+      BACKEND_URL: "http://edgeai-backend:8000"
+    depends_on:
+      - edgeai-backend
+    networks:
+      - edgeai-net
+
+networks:
+  edgeai-net:
+    name: edgeai-net
+    driver: bridge
