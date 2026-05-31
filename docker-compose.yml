@@ -15,21 +15,9 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
-      - edgeai-net
-
-  edgeai:
-    image: ghcr.io/wikolabs/edgeai:latest
-    container_name: edgeai
-    restart: unless-stopped
-    ports:
-      - "3028:3000"
-    environment:
-      BACKEND_URL: "http://edgeai-backend:8000"
-    depends_on:
-      - edgeai-backend
-    networks:
-      - edgeai-net
-
+  wkdemo_net:
+    name: wkdemo-net
+    external: true
 networks:
   edgeai-net:
     name: edgeai-net
