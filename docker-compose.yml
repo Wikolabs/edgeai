@@ -1,10 +1,11 @@
 version: "3.9"
 
-# EdgeAI demo — production-ready POC.
+# edgeai demo - production-ready POC.
 # 2 services orchestrated:
 #   - edgeai (Next.js frontend on host port 3028)
 #   - edgeai-backend (FastAPI Python, internal only on 8000)
-# Internal network so the frontend can reach the backend by service name.
+# Shared external network wkdemo-net (created once by deploy.yml) avoids
+# Docker default address-pool exhaustion across all 47 LP stacks.
 
 services:
   edgeai-backend:
@@ -15,10 +16,22 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
+      - wkdemo_net
+
+  edgeai:
+    image: ghcr.io/wikolabs/edgeai:latest
+    container_name: edgeai
+    restart: unless-stopped
+    ports:
+      - "3028:3000"
+    environment:
+      BACKEND_URL: "http://edgeai-backend:8000"
+    depends_on:
+      - edgeai-backend
+    networks:
+      - wkdemo_net
+
+networks:
   wkdemo_net:
     name: wkdemo-net
     external: true
-networks:
-  edgeai-net:
-    name: edgeai-net
-    driver: bridge
