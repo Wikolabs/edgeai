@@ -47,7 +47,7 @@ export default function DemoPage() {
     generate: "Générer le plan edge", generating: "Génération en cours...",
     briefTitle: "Rapport d'optimisation", emptyHint: "Le rapport s'affiche ici une fois généré.",
     sendOta: "Pousser OTA sur la flotte", openBenchmark: "Lancer benchmark Jenkins",
-    sentMock: "Image quantizee poussee sur 1 200 devices (mode démo, pas de connexion OTA réelle)",
+    sentMock: "Image quantizee poussée sur 1 200 devices (mode démo, pas de connexion OTA réelle)",
     benchmarkMock: "Job Jenkins lance sur runner edge-bench-01 (mode démo, pas de CI réel)",
     fallback: "Mode statique : la clé LLM sera ajoutée au prochain déploiement.",
     poweredBy: "Modèle :",
