@@ -1,22 +1,22 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 
 const PRODUCT = "EdgeAI";
 
 const PAL = {
-  bg: "#0A140F",
-  bg2: "#0F1F18",
-  surface: "rgba(255,255,255,0.045)",
-  surfaceHover: "rgba(255,255,255,0.07)",
-  border: "rgba(255,255,255,0.10)",
-  txt1: "#E8F5E8",
-  txt2: "#90A89A",
-  txt3: "#566B60",
-  accent: "#84CC16",
-  accentSoft: "rgba(132,204,22,0.12)",
-  accentBorder: "rgba(132,204,22,0.30)",
-  accentGlow: "rgba(132,204,22,0.18)",
-  navBg: "rgba(10,20,15,0.82)",
+  bg: "#1A1420",
+  bg2: "#221A29",
+  surface: "rgba(255,255,255,0.06)",
+  surfaceHover: "rgba(255,255,255,0.09)",
+  border: "rgba(255,255,255,0.12)",
+  txt1: "#F2ECF1",
+  txt2: "#C7BDC8",
+  txt3: "#8F8393",
+  accent: "#F2C230",
+  accentSoft: "rgba(242,194,48,0.14)",
+  accentBorder: "rgba(242,194,48,0.40)",
+  accentGlow: "rgba(242,194,48,0.18)",
+  navBg: "rgba(26,20,32,0.88)",
 };
 
 const DEVICES = [
@@ -41,20 +41,20 @@ export default function DemoPage() {
   const [staticMode, setStaticMode] = useState(false);
 
   const t = lang === "fr" ? {
-    back: "Retour", title: "Demo", sub: PRODUCT + " — plan d'optimisation et deploiement edge",
-    desc: "Choisissez une cible hardware et entrez votre modele. L'agent IA produit un plan de quantization, benchmark et deploiement OTA. Aucun service externe contacte — c'est un POC qui montre la logique de production.",
-    inputLabel: "Cible et modele", deviceLabel: "Cible hardware", modelLabel: "Modele d'origine", modelPh: "ex: yolov8n.pt (PyTorch, 38Mo)",
-    generate: "Generer le plan edge", generating: "Generation en cours...",
-    briefTitle: "Rapport d'optimisation", emptyHint: "Le rapport s'affiche ici une fois genere.",
+    back: "Retour", title: "Démo", sub: PRODUCT + ", plan d'optimisation et déploiement edge",
+    desc: "Choisissez une cible hardware et entrez votre modèle. L'agent IA produit un plan de quantization, benchmark et déploiement OTA. Aucun service externe contacté, c'est un POC qui montre la logique de production.",
+    inputLabel: "Cible et modèle", deviceLabel: "Cible hardware", modelLabel: "Modèle d'origine", modelPh: "ex: yolov8n.pt (PyTorch, 38Mo)",
+    generate: "Générer le plan edge", generating: "Génération en cours...",
+    briefTitle: "Rapport d'optimisation", emptyHint: "Le rapport s'affiche ici une fois généré.",
     sendOta: "Pousser OTA sur la flotte", openBenchmark: "Lancer benchmark Jenkins",
-    sentMock: "Image quantizee poussee sur 1 200 devices (mode demo, pas de connexion OTA reelle)",
-    benchmarkMock: "Job Jenkins lance sur runner edge-bench-01 (mode demo, pas de CI reel)",
-    fallback: "Mode statique : la cle LLM sera ajoutee au prochain deploiement.",
-    poweredBy: "Modele :",
-    note: "DEMO POC — aucune connexion reelle au registry OTA, Jenkins, Sigstore. L'IA estime les chiffres pour la demonstration.",
+    sentMock: "Image quantizee poussee sur 1 200 devices (mode démo, pas de connexion OTA réelle)",
+    benchmarkMock: "Job Jenkins lance sur runner edge-bench-01 (mode démo, pas de CI réel)",
+    fallback: "Mode statique : la clé LLM sera ajoutée au prochain déploiement.",
+    poweredBy: "Modèle :",
+    note: "DEMO POC, aucune connexion réelle au registry OTA, Jenkins, Sigstore. L'IA estime les chiffres pour la démonstration.",
   } : {
-    back: "Back", title: "Demo", sub: PRODUCT + " — edge optimization and deployment plan",
-    desc: "Pick a hardware target and enter your model. The AI agent produces a quantization plan, benchmark and OTA deployment plan. No external service contacted — this is a POC showing the production logic.",
+    back: "Back", title: "Demo", sub: PRODUCT + ", edge optimization and deployment plan",
+    desc: "Pick a hardware target and enter your model. The AI agent produces a quantization plan, benchmark and OTA deployment plan. No external service contacted, this is a POC showing the production logic.",
     inputLabel: "Target and model", deviceLabel: "Hardware target", modelLabel: "Source model", modelPh: "e.g. yolov8n.pt (PyTorch, 38MB)",
     generate: "Generate edge plan", generating: "Generating...",
     briefTitle: "Optimization report", emptyHint: "The report will appear here once generated.",
@@ -63,7 +63,7 @@ export default function DemoPage() {
     benchmarkMock: "Jenkins job started on edge-bench-01 runner (demo mode, no real CI)",
     fallback: "Static mode: LLM key will be added at next deploy.",
     poweredBy: "Model:",
-    note: "DEMO POC — no real connection to OTA registry, Jenkins, Sigstore. The AI estimates numbers for demonstration.",
+    note: "DEMO POC, no real connection to OTA registry, Jenkins, Sigstore. The AI estimates numbers for demonstration.",
   };
 
   async function generate() {
@@ -106,17 +106,17 @@ export default function DemoPage() {
       <style>{`
         *, *::before, *::after { box-sizing: border-box; }
         body { margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-        .wk-input { width: 100%; padding: 12px 14px; border-radius: 10px; background: ${PAL.surface}; border: 1px solid ${PAL.border}; color: ${PAL.txt1}; font-family: inherit; font-size: 14px; transition: border-color .2s, background .2s; }
+        .wk-input { width: 100%; padding: 12px 14px; border-radius: 6px; background: ${PAL.surface}; border: 1px solid ${PAL.border}; color: ${PAL.txt1}; font-family: inherit; font-size: 14px; transition: border-color .2s, background .2s; }
         .wk-input:focus { outline: none; border-color: ${PAL.accent}; background: ${PAL.surfaceHover}; }
-        .wk-btn-primary { background: ${PAL.accent}; color: #04080F; border: none; border-radius: 10px; padding: 13px 22px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; transition: opacity .2s, transform .2s; display: inline-flex; align-items: center; gap: 8px; }
+        .wk-btn-primary { background: ${PAL.accent}; color: #15171C; border: none; border-radius: 6px; padding: 13px 22px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; transition: opacity .2s, transform .2s; display: inline-flex; align-items: center; gap: 8px; }
         .wk-btn-primary:hover { opacity: .9; transform: translateY(-1px); }
         .wk-btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-        .wk-btn-ghost { background: ${PAL.surface}; color: ${PAL.txt1}; border: 1px solid ${PAL.border}; border-radius: 10px; padding: 9px 14px; font-weight: 600; font-size: 13px; cursor: pointer; font-family: inherit; transition: background .2s, border-color .2s; display: inline-flex; align-items: center; gap: 6px; }
+        .wk-btn-ghost { background: ${PAL.surface}; color: ${PAL.txt1}; border: 1px solid ${PAL.border}; border-radius: 6px; padding: 9px 14px; font-weight: 600; font-size: 13px; cursor: pointer; font-family: inherit; transition: background .2s, border-color .2s; display: inline-flex; align-items: center; gap: 6px; }
         .wk-btn-ghost:hover { background: ${PAL.surfaceHover}; border-color: ${PAL.accentBorder}; }
         .wk-md p, .wk-md ul { margin: 0 0 10px; }
         .wk-md ul { padding-left: 18px; }
         .wk-md li { margin-bottom: 4px; line-height: 1.65; }
-        .wk-md strong { color: ${PAL.accent}; font-weight: 700; display: block; margin-top: 10px; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; }
+        .wk-md strong { color: ${PAL.accent}; font-weight: 700; display: block; margin-top: 10px; margin-bottom: 4px; font-size: 0.95rem;   }
         @media (max-width: 768px) {
           .demo-grid { grid-template-columns: 1fr !important; }
         }
@@ -124,46 +124,46 @@ export default function DemoPage() {
 
       <nav style={{ padding: "16px 32px", borderBottom: `1px solid ${PAL.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", background: PAL.navBg, backdropFilter: "blur(20px)", position: "sticky", top: 0, zIndex: 10 }}>
         <a href="/" style={{ color: PAL.accent, textDecoration: "none", fontSize: 14, fontWeight: 600 }}>
-          ← {t.back} {PRODUCT}<span style={{ color: PAL.accent }}>.</span>
+          {t.back} {PRODUCT}<span style={{ color: PAL.accent }}>.</span>
         </a>
         <div style={{ display: "inline-flex", border: `1px solid ${PAL.border}`, borderRadius: 100, padding: 2, background: PAL.surface }}>
-          <button onClick={() => setLang("fr")} style={{ background: lang === "fr" ? PAL.accent : "transparent", color: lang === "fr" ? "#04080F" : PAL.txt2, border: "none", padding: "4px 12px", fontSize: 11, fontWeight: 700, cursor: "pointer", borderRadius: 100, fontFamily: "inherit" }}>FR</button>
-          <button onClick={() => setLang("en")} style={{ background: lang === "en" ? PAL.accent : "transparent", color: lang === "en" ? "#04080F" : PAL.txt2, border: "none", padding: "4px 12px", fontSize: 11, fontWeight: 700, cursor: "pointer", borderRadius: 100, fontFamily: "inherit" }}>EN</button>
+          <button onClick={() => setLang("fr")} style={{ background: lang === "fr" ? PAL.accent : "transparent", color: lang === "fr" ? "#15171C" : PAL.txt2, border: "none", padding: "4px 12px", fontSize: 11, fontWeight: 700, cursor: "pointer", borderRadius: 100, fontFamily: "inherit" }}>FR</button>
+          <button onClick={() => setLang("en")} style={{ background: lang === "en" ? PAL.accent : "transparent", color: lang === "en" ? "#15171C" : PAL.txt2, border: "none", padding: "4px 12px", fontSize: 11, fontWeight: 700, cursor: "pointer", borderRadius: 100, fontFamily: "inherit" }}>EN</button>
         </div>
       </nav>
 
       <main style={{ flex: 1, padding: "32px", maxWidth: 1200, margin: "0 auto", width: "100%" }}>
-        <h1 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(1.8rem,3.5vw,2.6rem)", fontWeight: 700, margin: "0 0 6px" }}>
-          {t.title} · <em style={{ fontStyle: "italic", color: PAL.accent }}>{PRODUCT}</em>
+        <h1 style={{ fontFamily: "var(--font-display), 'Bricolage Grotesque', sans-serif", letterSpacing: "-0.02em", fontSize: "clamp(1.8rem,3.5vw,2.6rem)", fontWeight: 700, margin: "0 0 6px" }}>
+          {t.title} <em style={{ fontStyle: "normal", color: PAL.accent }}>{PRODUCT}</em>
         </h1>
         <p style={{ color: PAL.txt2, fontSize: "0.95rem", lineHeight: 1.65, maxWidth: 720, margin: "0 0 6px" }}>{t.sub}</p>
         <p style={{ color: PAL.txt3, fontSize: "0.78rem", lineHeight: 1.55, maxWidth: 720, margin: "0 0 28px" }}>{t.desc}</p>
 
         <div className="demo-grid" style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 24 }}>
-          <section style={{ background: PAL.surface, border: `1px solid ${PAL.border}`, borderRadius: 16, padding: 22 }}>
-            <h2 style={{ fontSize: "0.72rem", color: PAL.txt3, textTransform: "uppercase", letterSpacing: 2, fontWeight: 700, margin: "0 0 14px" }}>{t.inputLabel}</h2>
+          <section style={{ background: PAL.surface, border: `1px solid ${PAL.border}`, borderRadius: 6, padding: 22 }}>
+            <h2 style={{ fontSize: "0.92rem", color: PAL.txt2, fontWeight: 700, margin: "0 0 14px" }}>{t.inputLabel}</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 18 }}>
               <div>
-                <label style={{ color: PAL.txt3, fontSize: 11, textTransform: "uppercase", letterSpacing: 1, display: "block", marginBottom: 6 }}>{t.deviceLabel}</label>
+                <label style={{ color: PAL.txt3, fontSize: 11, display: "block", marginBottom: 6 }}>{t.deviceLabel}</label>
                 <select className="wk-input" value={device} onChange={(e) => setDevice(e.target.value)}>
                   {DEVICES.map((d) => <option key={d} value={d} style={{ background: PAL.bg2 }}>{d}</option>)}
                 </select>
               </div>
               <div>
-                <label style={{ color: PAL.txt3, fontSize: 11, textTransform: "uppercase", letterSpacing: 1, display: "block", marginBottom: 6 }}>{t.modelLabel}</label>
+                <label style={{ color: PAL.txt3, fontSize: 11, display: "block", marginBottom: 6 }}>{t.modelLabel}</label>
                 <input className="wk-input" value={model} onChange={(e) => setModel(e.target.value)} placeholder={t.modelPh} />
               </div>
             </div>
             <button className="wk-btn-primary" disabled={loading} onClick={generate} style={{ width: "100%", justifyContent: "center" }}>
-              {loading ? `⏳ ${t.generating}` : `✨ ${t.generate}`}
+              {loading ? `${t.generating}` : `${t.generate}`}
             </button>
             {error && <div style={{ marginTop: 12, color: "#F87171", fontSize: 13, padding: "8px 12px", background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.3)", borderRadius: 8 }}>{error}</div>}
             <p style={{ color: PAL.txt3, fontSize: 11, lineHeight: 1.5, marginTop: 18, marginBottom: 0, paddingTop: 14, borderTop: `1px solid ${PAL.border}` }}>{t.note}</p>
           </section>
 
-          <section style={{ background: PAL.bg2, border: `1px solid ${PAL.border}`, borderRadius: 16, padding: 22, minHeight: 420, display: "flex", flexDirection: "column" }}>
+          <section style={{ background: PAL.bg2, border: `1px solid ${PAL.border}`, borderRadius: 6, padding: 22, minHeight: 420, display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-              <h2 style={{ fontSize: "0.72rem", color: PAL.txt3, textTransform: "uppercase", letterSpacing: 2, fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+              <h2 style={{ fontSize: "0.92rem", color: PAL.txt2, fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ width: 8, height: 8, borderRadius: "50%", background: brief ? "#22C55E" : PAL.txt3 }} />
                 {t.briefTitle}
               </h2>
@@ -180,8 +180,8 @@ export default function DemoPage() {
 
             {brief && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18, paddingTop: 18, borderTop: `1px solid ${PAL.border}` }}>
-                <button className="wk-btn-ghost" onClick={() => showToast(t.sentMock)}>📡 {t.sendOta}</button>
-                <button className="wk-btn-ghost" onClick={() => showToast(t.benchmarkMock)}>⚙️ {t.openBenchmark}</button>
+                <button className="wk-btn-ghost" onClick={() => showToast(t.sentMock)}>{t.sendOta}</button>
+                <button className="wk-btn-ghost" onClick={() => showToast(t.benchmarkMock)}>{t.openBenchmark}</button>
               </div>
             )}
             {staticMode && <div style={{ marginTop: 14, color: PAL.txt3, fontSize: 12, fontStyle: "italic" }}>{t.fallback}</div>}
@@ -190,7 +190,7 @@ export default function DemoPage() {
       </main>
 
       {toast && (
-        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: PAL.surface, border: `1px solid ${PAL.accentBorder}`, borderRadius: 12, padding: "12px 20px", color: PAL.txt1, fontSize: 13, fontWeight: 600, zIndex: 50, backdropFilter: "blur(20px)", boxShadow: "0 8px 28px rgba(0,0,0,0.4)" }}>
+        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: PAL.surface, border: `1px solid ${PAL.accentBorder}`, borderRadius: 8, padding: "12px 20px", color: PAL.txt1, fontSize: 13, fontWeight: 600, zIndex: 50, backdropFilter: "blur(20px)", boxShadow: "0 8px 28px rgba(0,0,0,0.4)" }}>
           ✓ {toast}
         </div>
       )}
